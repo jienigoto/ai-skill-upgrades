@@ -21,3 +21,12 @@
    - `git remote add origin https://github.com/Jienigoto/ai-skill-upgrades.git`（若未配置）
    - `git push -u origin HEAD`
 2. 推送后补充仓库链接到 `output/github-release-notes.md`
+## 发布重试更新（2026-06-22T08:11:41+08:00）
+
+- Commit: df02033
+- gh auth status: 失败（未登录）
+- gh repo view: 失败（未授权）
+- gh repo create: 失败（未授权）
+- git remote: 未配置 origin
+- git push origin master: 失败（origin 不存在）
+- 结论：仍处于阻塞状态，需人工补齐 gh 登录与远端配置后重试
