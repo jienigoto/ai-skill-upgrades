@@ -1,30 +1,30 @@
-﻿# Asset Manifest（2026-06-22）
+﻿# 资产清单（2026-06-22）
 
-## 研究对象
+## 目标与来源
 
-- browser-use/browser-use
-- agno-agi/agno
-- open-webui/open-webui
+- `openai/openai-agents-python`
+- `modelcontextprotocol/python-sdk`
+- `browser-use/browser-use`
+- Claude official release notes（边界比对）
 
-## 文件清单
+## 本次输出文件
 
-- `README.md`：项目结论与关键结果
-- `brief.md`：研究方向、候选与选型逻辑
-- `script.md`：执行日志与步骤
-- `asset-manifest.md`：候选与产物映射
-- `render-notes.md`：验证与发布阻塞说明
-- `output/SKILL.md`：可复用 Skill 文档
-- `output/github-release-notes.md`：发布记录与重试动作
+- `README.md`
+- `brief.md`
+- `script.md`
+- `asset-manifest.md`
+- `render-notes.md`
+- `output/SKILL.md`
+- `output/github-release-notes.md`
 
-## 来源链接
+## 证据文件
 
-- https://github.com/browser-use/browser-use
-- https://github.com/agno-agi/agno
-- https://github.com/open-webui/open-webui
-- https://agno.verygood.ventures/
+- GitHub 仓库快照（stars/forks/open issues/pushed_at）
+- GitHub release 记录（tag + published_at + 简要改动）
+- 官方发布页链接（OpenAI Agents SDK、Claude Release Notes）
 
-## 验证材料
+## 核验对象
 
-- Git commit 生成完成
-- GH 登录失败与发布阻塞日志写入 render-notes
-- 无 secrets、无凭据写入
+- 目录完整性
+- 3 个升级点是否已落入 SKILL
+- 发布阻塞原因是否可复现

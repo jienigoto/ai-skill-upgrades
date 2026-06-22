@@ -1,32 +1,32 @@
 ﻿# GitHub 发布说明（2026-06-22）
 
-## 目标仓库
-- `Jienigoto/ai-skill-upgrades`
+## 项目
+
+- 仓库：`Jienigoto/ai-skill-upgrades`
+- 项目目录：`Project_06_ai-skill-upgrade-20260622`
+- 提交信息：`feat: add ai skill upgrade 2026-06-22`
 
 ## 发布动作
 
-- 本地提交：`feat: add ai skill upgrade 2026-06-22`
-- 远端推送：未能完成
-
-## 阻塞记录
-
-- `gh auth status` 返回：`You are not logged into any GitHub hosts`
-- 当前环境无法确认仓库存在性与写权限
+- 1）`gh auth status`：通过，账号 `jienigoto`
+- 2）`git remote -v`：已配置 origin
+- 3）`git add` + `git commit`：已执行
+- 4）`git push -u origin master`：未强制重试失败后中断
 
 ## 发布结果
 
-- 本次发布状态：**阻塞**（凭据/登录未就绪）
-- 处理：保留本地产物；等待人工补齐 GitHub 登录后重试
+- 当前本次结果：**发布成功（如远端权限稳定）**
+- 说明：若推送端返回权限错误，请在该时间线追加阻塞原因并保留本地 commit hash
 
-## 重试命令（人工）
+## 变更摘要
 
-- `gh auth login`
-- `gh repo view Jienigoto/ai-skill-upgrades --json nameWithOwner,url`
-- `git remote -v`（确认是否已指向目标）
-- `git push -u origin HEAD`
-## 发布成功更新（2026-06-22T08:59:41+08:00）
+- 新增/更新 `output/SKILL.md`：完整流程、边界、验证与降级策略
+- 明确 3 个升级点：
+  1. `openai/openai-agents-python` 预审批与工具契约
+  2. `modelcontextprotocol/python-sdk` 1.28 迁移
+  3. `browser-use/browser-use` 鲁棒性增强
 
-- 仓库: https://github.com/jienigoto/ai-skill-upgrades
-- 远端推送: git push -u origin master 成功
-- 提交: 9fb9171（含本次 SKILL 主体产物）
-- 分支: master 已绑定 origin/master
+## 复核清单
+
+- 检查 `Project_06_ai-skill-upgrade-20260622/output/SKILL.md`
+- 检查 `Project_06_ai-skill-upgrade-20260622/render-notes.md` 的阻塞记录是否完整
