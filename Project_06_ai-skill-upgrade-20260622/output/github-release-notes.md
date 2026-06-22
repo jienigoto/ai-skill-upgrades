@@ -24,3 +24,9 @@
 - `gh repo view Jienigoto/ai-skill-upgrades --json nameWithOwner,url`
 - `git remote -v`（确认是否已指向目标）
 - `git push -u origin HEAD`
+## 发布成功更新（2026-06-22T08:59:41+08:00）
+
+- 仓库: https://github.com/jienigoto/ai-skill-upgrades
+- 远端推送: git push -u origin master 成功
+- 提交: 9fb9171（含本次 SKILL 主体产物）
+- 分支: master 已绑定 origin/master
