@@ -1,163 +1,131 @@
 ﻿---
-name: daily-ai-skill-upgrade-workflow
-version: 1.0.0
-description: "将高价值 AI 应用或工作流转化为可复用 Codex 技能：包含候选筛选、能力边界定义、失败降级和验证闭环"
+name: daily-ai-skill-upgrade-workflow-v2
+description: "每天自动筛选并升级高价值 AI 应用 / SKILL 工作流，输出可复用的 Codex 技能模板，并内置发布阻塞降级策略"
 trigger:
-  - "用户要求进行每日 AI 技术/技能升级"
-  - "需要选择并输出可复用的 Codex SKILL"
-  - "要求做 GitHub 研究、验证、发布的日常流程"
+  - 用户要求执行每日 AI Skill 升级并落库
+  - 需要将近期热门 AI 应用转为可复用 Codex 技能
+  - 研究结论需同步生成发布说明与复盘记录
+version: 1
+versioned_from: AI博主视频
 inputs:
-  - name: target_date
-    description: "yyyy-mm-dd，用于项目命名与归档"
-    required: false
-  - name: project_root
-    description: "AI 博主视频工作区绝对路径"
-    required: true
-  - name: max_candidates
-    description: "候选对象扫描数量上限"
-    required: false
+  required:
+    - name: workspace_root
+      type: string
+      desc: 工作区绝对路径，例如 C:\Users\86152\Documents\AI博主视频
+    - name: project_prefix
+      type: string
+      desc: 默认 ai-skill-upgrade
+  optional:
+    - name: target_date
+      type: string
+      desc: YYYY-MM-DD，默认当天
 outputs:
-  - path: README.md
-    description: "项目总览与结论摘要"
-  - path: brief.md
-    description: "研究方向与选题依据"
-  - path: script.md
-    description: "执行流程与操作记录"
-  - path: asset-manifest.md
-    description: "数据源与产物清单"
-  - path: render-notes.md
-    description: "验证记录与发布阻塞说明"
-  - path: output/SKILL.md
-    description: "可复用的技能定义"
-  - path: output/github-release-notes.md
-    description: "发布说明与发布结果"
-steps:
-  - name: "环境预检"
-    run:
-      - "读取工作区 AGENTS.md 与三份控制文件"
-      - "确认非目标项目文件不被修改"
-      - "检查当天是否已有同主题项目"
-  - name: "创建项目"
-    run:
-      - "新建 Project_XX_ai-skill-upgrade-YYYYMMDD"
-      - "创建 README.md/brief.md/script.md/asset-manifest.md/render-notes.md/output/renders"
-  - name: "候选收集"
-    tools:
-      - chrome/browser
-      - web 搜索
-      - GitHub API/gh/REST
-    run:
-      - "按‘近期活跃+可复用+可解释机制+落地能力’抓取 6~10 个候选"
-      - "记录每个候选的用途、核心功能、工作原理、边界、链接、热度证据"
-      - "标记可落库为 skill 的优先级"
-  - name: "候选评分与筛选"
-    run:
-      - "对候选执行可复用价值评分(实用性/稳定性/复用难度/失败可控性)"
-      - "强制输出 3 个升级点"
-  - name: "SKILL 生成"
-    run:
-      - "编写 output/SKILL.md 包含 Frontmatter 与边界"
-      - "补齐 fallback/错误处理与验证项"
-  - name: "发布准备"
-    run:
-      - "编写 github-release-notes.md"
-      - "git add/commit，提交信息 feat: add ai skill upgrade YYYY-MM-DD"
-      - "尝试 gh auth/远端提交"
-  - name: "复盘"
-    run:
-      - "render-notes 记录阻塞原因与人工补齐项"
-      - "若有可复用阻塞经验，更新全局复盘日志"
+  required:
+    - README.md
+    - brief.md
+    - script.md
+    - asset-manifest.md
+    - render-notes.md
+    - output/SKILL.md
+    - output/github-release-notes.md
 scope:
   include:
-    - "web 搜索与仓库元数据抓取"
-    - "候选比较与可复用性判断"
-    - "技能文档结构化输出"
+    - web 搜索与 GitHub 开源信息抓取
+    - 候选对象评估（用途/原理/边界）
+    - SKILL 文档自动构建
+    - GitHub 发布预检与阻塞记录
   exclude:
-    - "未授权访问私有仓库内容"
-    - "生成敏感密钥/凭证"
-    - "对项目外文件进行无关改动"
-verification:
+    - 私有仓库与凭据抓取
+    - 删除或修改非目标项目文件
+steps:
+  - phase: preflight
+    actions:
+      - 读取并遵守 AGENTS.md 与 00/02/03 控制文件
+      - 若当日同主题项目存在则复用同日新建规则；否则创建 Project_XX_ai-skill-upgrade-YYYYMMDD
+  - phase: discovery
+    actions:
+      - web 搜索 + GitHub release/主页 + 官方文档
+      - 记录每个候选的用途、核心功能、工作原理、边界与来源链接
+      - 保存热度证据（发布时间、最近更新、版本信息）
+  - phase: selection
+    actions:
+      - 基于实用性、稳定性、可复用性、失败可控性进行打分
+      - 自动选择 3 个可升级点写入 SKILL
+  - phase: artifact
+    actions:
+      - 生成 required files 与项目结构
+      - 产出 github-release-notes 与 render-notes（含阻塞证据）
+  - phase: publish
+    actions:
+      - 尝试 gh auth / gh repo view / 推送
+      - 失败则不冒充成功，输出明确阻塞原因与下一步
+
+upgrade_points:
+  - name: 浏览器自动化可靠性增强
+    source_reference: browser-use
+    problem: "浏览器动作链路在页面变化、元素延迟或权限变化下易抛错"
+    what_is_better: "增加标准化动作编排 + 重试策略模板 + DOM 快照快照比对，输出统一失败上下文"
+    reliability_plan:
+      - "统一设置 action timeout 与重试上限"
+      - "元素定位策略改为优先稳定选择器 + 容错降级链"
+      - "执行前做最小状态快照并加入异常截图"
+    fallback:
+      - "切到静态抓取路径（read-only）并触发人工 review flag"
+      - "标记该步骤为待人工确认并保留上下文日志"
+
+  - name: Agent 记忆与编排稳定化
+    source_reference: agno
+    problem: "多 agent 流程在上下文漂移或工具失败时难以稳定闭环"
+    what_is_better: "加入 memory TTL、schema 检验与执行预算控制，形成可恢复的 team/workflow 运行模式"
+    reliability_plan:
+      - "所有工具返回先做 schema 验证，失败时回退到简化路径"
+      - "为 memory 设置保留策略，防止上下文污染"
+      - "建立异常分类（超时、格式错、授权失败）对应降级动作"
+    fallback:
+      - "停用 memory，切到 stateless 单步执行"
+      - "仅保留最近一次成功上下文并人工触发续跑"
+
+  - name: 本地优先发布链路稳定化
+    source_reference: open-webui
+    problem: "依赖外部 API 与网络时，发布与验证链路易受外部抖动影响"
+    what_is_better: "在 local-first 条件下保持任务队列、缓存和离线验证可运行，减少外部服务耦合"
+    reliability_plan:
+      - "引入可配置的离线模式和最小权限最小链路"
+      - "对发布前置步骤做 dry-run 与清单化校验"
+      - "将 API 失败转为阻塞原因文件化，不阻断本地产物保存"
+    fallback:
+      - "网络失效时自动跳过发布步骤，仅保留本地 artifacts 和阻塞记录"
+      - "下次运行时重放发布步骤"
+
+validation:
   checks:
-    - "项目目录含 README.md brief.md script.md asset-manifest.md render-notes.md output/ renders/"
-    - "候选说明覆盖用途/核心功能/工作原理/边界/来源/热度证据/适配理由"
-    - "SKILL 包含 name/version/description/frontmatter 与触发条件、流程、边界、fallback"
-    - "git commit 信息符合模板"
-    - "发布结果可重放且阻塞信息可追踪"
-failure_modes:
+    - 目录结构齐全
+    - 候选材料包含用途/原理/边界/热度证据
+    - 3 个升级点完整（问题/增强/稳定性/降级）
+    - 本地提交成功
+  failure_evidence:
+    - 无凭据时记录精确报错文本
+    - 无网络时回退到本地缓存与历史候选
+    - 工具不可用时改写为待办清单并留痕
+
+failure_handling:
   no_network:
-    symptom: "搜索与 API 调用超时/无响应"
-    fallback: "使用已有候选清单与离线知识优先级；标记为低置信度并补充下一轮验证需求"
-  no_gh:
-    symptom: "gh 未安装或未登录"
-    fallback: "保留本地产物与阻塞日志，说明恢复步骤：gh auth login 后重试"
-  repo_missing:
-    symptom: "仓库不存在或无权限"
-    fallback: "记录仓库链接与申请权限；暂存为 local-only，禁止声称发布成功"
-  rate_limit_or_api_failure:
-    symptom: "REST/gh 接口失败(401/403/Network)"
-    fallback: "保留已采集信息并增加替代来源验证点（发布页/发行标签）"
-  tool_unavailable:
-    symptom: "Chrome/gh/浏览器不可用"
-    fallback: "采用 web fallback + GitHub REST，或降低自动化为纯离线文档更新"
-boundaries:
-  network_scope: "只访问公开信息源；禁止抓取私有 repo 内容"
-  safety: "不执行高风险系统命令、不改写他人项目、不存储 secret"
-  output_format: "Markdown + JSON 可选摘要；文件名与项目路径固定"
-  quality_bar:
-    reliability: "每个候选需可复现证据（链接/时间/版本/更新说明）"
-    upgrade_point: "每个 SKILL 功能点需给出降级路径"
+    action: "记录候选来源为上一次缓存并标注置信度"
+  gh_not_logged_in:
+    action: "阻塞发布并写入 render-notes，要求人工先执行 gh auth login"
+  missing_repo_or_permission:
+    action: "确认仓库存在与权限；无法确认时不做任何虚假成功声明"
+  tool_outage:
+    action: "保持 output/ 项目文件完整，后续恢复后重跑 publish 阶段"
+
+notes:
+  - do_not_store: secret、token、凭据或一次性隐私数据
+  - this_skill_is_local_first: true
 ---
 
-# daily-ai-skill-upgrade-workflow
+# daily-ai-skill-upgrade-workflow-v2
 
-## 适用场景
-
-面向“每日 AI 应用与 SKILL 升级”自动化，自动完成候选调研、价值筛选、3 点升级产出与发布预检。
-
-## 输入
-
-- `target_date`：运行日期，默认为当天日期（如 `2026-06-22`）。
-- `project_root`：AI 博主视频全局工作区绝对路径。
-
-## 输出
-
-1. 项目文件：README、brief、script、asset-manifest、render-notes。
-2. `output/SKILL.md`：可复用技能文档。
-3. `output/github-release-notes.md`：发布说明。
-4. `git` 提交：`feat: add ai skill upgrade YYYY-MM-DD`。
-
-## 执行规则（固定）
-
-1. 先读：`AGENTS.md`、`00_全局控制台.md`、`02_工作区架构与命名规则_下一个Codex提示词.md`、`03_新项目创建SOP.md`。
-2. 仅新增项目目录，默认 `Project_XX_ai-skill-upgrade-YYYYMMDD`，除非当日同主题已存在。
-3. 优先通过公开源码仓库发布页、releases、官方文档和可证实更新日志筛选候选。
-4. 记录每个候选：用途、核心功能、工作原理、边界、来源、活跃证据、是否转为 Skill。
-5. 输出 3 个升级点，每点包含：
-   - 解决问题
-   - 比对参考对象增强点
-   - 稳定性提升方法
-   - 失败降级策略
-6. 不可伪造上传成功：发布失败必须写入阻塞原因与重试计划。
-
-## 升级点设计模板
-
-- 问题定义 → 对标对象 → 当前方案改进 → 验证指标 → 回滚/降级。
-
-## 验证点
-
-- 文件齐全度：缺一不可。
-- 3 个升级点是否可执行。
-- 是否形成 `asset-manifest.md` 的来源与产物映射。
-- git 提交是否成功。
-- GitHub 发布阻塞信息是否可追溯。
-
-## 示例调用
-
-```bash
-# 伪调用（由 Codex 执行）
-.
-# 1. 初始化项目目录
-# 2. 收集候选并打分
-# 3. 生成并提交产物
-# 4. 尝试发布并记录阻塞原因
-```
+该 SKILL 直接产出三项可复用能力：
+1. AI 工具候选评估模板
+2. 可靠性强化的 Skill 设计模板
+3. 发布阻塞可追溯流程
