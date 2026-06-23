@@ -1,21 +1,17 @@
-# GitHub 发布说明（2026-06-23）
-
-## 预期目标
-
-- 仓库：`Jienigoto/ai-skill-upgrades`
-- 分支：`master`
-- commit message：`feat: add ai skill upgrade 2026-06-23`
+﻿# GitHub 发布说明（2026-06-23）
 
 ## 本次发布动作
 
-- gh auth status：待执行
-- git remote 检查：待执行
-- commit：待执行
-- push：待执行
+- gh auth status：✅ 已登录（`jienigoto`）
+- git remote：✅ `https://github.com/Jienigoto/ai-skill-upgrades.git`
+- commit：✅ `feat: add ai skill upgrade 2026-06-23`（`aa5f77c`）
+- push：✅ 已推送到 `master`（远程返回仓库已迁移提醒，但已落到目标仓库）
 
-## 人工确认项
+## 结果
 
-- 若 `gh` 认证失败，请在有权限环境重试：
-  - `gh auth login`
-  - `git remote add origin https://github.com/Jienigoto/ai-skill-upgrades.git`（若无）
-  - `git push -u origin master`
+- 远端提交：[$commit]('$repo/commit/$commit')
+- 远端仓库：`$repo`
+
+## 说明
+
+仓库提示 `This repository moved`，但推送成功完成。
