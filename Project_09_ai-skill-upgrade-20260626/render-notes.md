@@ -23,7 +23,7 @@
 ## 当前状态
 
 - GitHub 上传：成功。
-  - 远端 commit：`42b7b8f`
+- 远端 commit：`7c1c2dd`（包含发布说明与最终状态修正）
   - 仓库：`https://github.com/Jienigoto/ai-skill-upgrades`
   - 分支：`master`
 - 本地文件：完整保留。

@@ -20,8 +20,8 @@
 - 对外发布前先阅读 `render-notes.md`，确认无阻塞。
 
 ### 发布结果
-- 提交：`feat: add ai skill upgrade 2026-06-26`
-- 远端 Commit：`https://github.com/jienigoto/ai-skill-upgrades/commit/42b7b8f`
+- 首次提交：`feat: add ai skill upgrade 2026-06-26`
+- 最终提交：`https://github.com/jienigoto/ai-skill-upgrades/commit/7c1c2dd`
 
 > 注意：发布前曾出现 fast-forward 限制，已通过 rebase 复位历史后成功合入。 
 
