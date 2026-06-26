@@ -22,9 +22,17 @@
 
 ## 当前状态
 
-- GitHub 上传：待确认（见发布说明）。
+- GitHub 上传：成功。
+  - 远端 commit：`42b7b8f`
+  - 仓库：`https://github.com/Jienigoto/ai-skill-upgrades`
+  - 分支：`master`
 - 本地文件：完整保留。
 
 ## 下一步人工确认
 
-- 若上传被阻塞：按 render-notes 中阻塞信息（token/网络/权限）进行人工重试。
+- 若后续发布失败：按 render-notes 中阻塞信息（token/网络/权限）进行人工重试。
+
+## 说明
+
+- 首次 push 时触发 `non-fast-forward` 阻塞，处理方式为先 `git fetch` + `git rebase` 后再推送。
+- 本次 rebase 因本地存在未跟踪的同名目录 `Project_08_ai-skill-upgrade-20260624` 导致 checkout 冲突，已将该目录临时重命名后恢复，再重新推送。

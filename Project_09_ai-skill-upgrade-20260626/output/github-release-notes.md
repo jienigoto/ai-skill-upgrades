@@ -19,6 +19,12 @@
 - 执行该目录内 workflow：按 `script.md` 顺序完成候选评估、产物生成、发布记录。
 - 对外发布前先阅读 `render-notes.md`，确认无阻塞。
 
+### 发布结果
+- 提交：`feat: add ai skill upgrade 2026-06-26`
+- 远端 Commit：`https://github.com/jienigoto/ai-skill-upgrades/commit/42b7b8f`
+
+> 注意：发布前曾出现 fast-forward 限制，已通过 rebase 复位历史后成功合入。 
+
 ### 当日 3 个升级点
 1. browser-use 0.13.2 + qa skill：提升网页任务稳定性与结果可核验性。
 2. openai/codex rust-v0.142.2：强化编码代理执行治理与环境边界。
