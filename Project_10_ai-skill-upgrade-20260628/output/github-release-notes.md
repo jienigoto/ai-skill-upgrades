@@ -29,7 +29,8 @@
 ## 发布结果
 
 - 状态：成功
-- 提交：见下方 commit 链接
+- 提交：`https://github.com/jienigoto/ai-skill-upgrades/commit/0a4b085`
+- 备注：push 时提示仓库迁移信息（提示新地址，但当前已成功落库）。
 
 ## 当日 3 个升级点总结
 

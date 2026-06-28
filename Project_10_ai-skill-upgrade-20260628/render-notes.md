@@ -22,7 +22,8 @@
 
 - 结论：**GitHub 上传成功**。
 - 远端分支：`master`
-- 远端提交：见发布说明文件中的 commit link。
+- 远端提交：`https://github.com/jienigoto/ai-skill-upgrades/commit/0a4b085`
+- 备注：`git push` 返回仓库已迁移提示，但实际写入成功到当前目标仓库。
 
 ## 风险与下一步
 
