@@ -34,11 +34,12 @@
 
 ## 发布结果
 
-- 状态：待执行（由脚本实际输出覆盖）
-- 提交：待补齐
-- 说明：如发布失败请在 `render-notes.md` 记录阻塞原因。
+- 状态：成功
+- 提交：`2c0481d`
+- 远端链接：`https://github.com/Jienigoto/ai-skill-upgrades/commit/2c0481d`
+- 备注：推送到 master 成功；出现仓库迁移提示但已成功写入目标 URL。
 
 ## 验证情况
 
 - 本地文件清单：已生成（含 6 类必需文件）。
-- 参考证据：已在 `brief.md` / `asset-manifest.md` 与 `brief` 的候选表中记录。
+- 参考证据：已在 `brief.md` / `asset-manifest.md` 中记录。
