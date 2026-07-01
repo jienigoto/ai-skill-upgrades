@@ -20,9 +20,9 @@
 
 ## 发布结果
 
-- 本地提交：`88f4d56`，提交信息 `feat: add ai skill upgrade 2026-07-01`
+- 本地提交：`88f4d56`、`dd69c84`、`959ad2c`（后续提交更新 render notes 和复盘日志）
 - 远端仓库：`Jienigoto/ai-skill-upgrades`
-- 远端链接：`https://github.com/jienigoto/ai-skill-upgrades/commit/88f4d56`
+- 远端链接：`https://github.com/jienigoto/ai-skill-upgrades/commit/959ad2c`
 - 发布状态：成功（推送到 `master`）
 - 注：提示仓库迁移但推送目标已到位，未阻塞。
 
