@@ -11,7 +11,7 @@
 
 1. Browser-use 任务链的模型前缀与发布门控护栏模板。
 2. MCP 协议 auto-mode 与 legacy 回退模板。
-3. Claude Code 上下文/成本治理流程模板。
+3. Claude Code 成本和上下文治理流程模板。
 
 ## 适用场景
 
@@ -32,6 +32,7 @@
 
 ## 发布结果
 
-- 状态：待提交后写入 commit 链接
+- 状态：成功
 - 仓库：`Jienigoto/ai-skill-upgrades`
-- 远端 commit：待更新
+- 远端：`https://github.com/jienigoto/ai-skill-upgrades/commit/88f4d56`
+- 提交：`88f4d56`
