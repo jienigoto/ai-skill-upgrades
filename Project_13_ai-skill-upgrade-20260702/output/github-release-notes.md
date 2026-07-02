@@ -1,7 +1,7 @@
 ﻿# GitHub 发布说明（2026-07-02）
 
-- SKILL 名称：`daily-ai-skill-upgrade-2026-07-02`
-- SKILL 路径：`Project_13_ai-skill-upgrade-20260702/output/SKILL.md`
+- SKILL 名称：daily-ai-skill-upgrade-2026-07-02
+- SKILL 路径：$proj/output/SKILL.md
 
 ## 作用
 
@@ -21,16 +21,18 @@
 
 ## 使用方式
 
-- 按 `Project_13_ai-skill-upgrade-20260702/script.md` 执行。
-- 首先阅读 `brief.md` 和 `render-notes.md`，再执行 `output/SKILL.md`。
+- 按 $proj/script.md 执行。
+- 先阅读 rief.md 与 ender-notes.md，再执行 $proj/output/SKILL.md。
 
 ## 当日 3 个升级点
 
-- U1：browser-use 0.13.3 `browser-use skill` 与 CLI 3.0 的统一治理
+- U1：browser-use 0.13.3 rowser-use skill 与 CLI 3.0 的统一治理
 - U2：openai/codex rust-v0.142.5 trace + websocket 回退策略
 - U3：pydantic-ai v2.2.0 评测与生命周期模板
 
 ## 发布结果
 
-- 状态：待记录（本地待提交后执行推送）
-- 仓库：`Jienigoto/ai-skill-upgrades`
+- 状态：成功
+- 远端仓库：Jienigoto/ai-skill-upgrades
+- 提交：$commit
+- 远端链接：https://github.com/jienigoto/ai-skill-upgrades/commit/d206ec6
