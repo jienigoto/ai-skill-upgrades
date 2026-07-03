@@ -34,6 +34,7 @@
 ## 发布结果（本次执行）
 
 - 目标仓库：`Jienigoto/ai-skill-upgrades`
-- 推送状态：待执行
-- commit：待生成
-- 远端链接：待生成
+- 推送状态：成功（gh 认证可用，远端可写）
+- commit：3df0f16b08fc534b930f77e1b76d44ade5bae6e7
+- 远端链接：https://github.com/Jienigoto/ai-skill-upgrades/commit/3df0f16b08fc534b930f77e1b76d44ade5bae6e7
+- 远端提示：仓库地址存在大小写提示（Moved）但本次推送已到位
